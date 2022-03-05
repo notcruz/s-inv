@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Navbar from "../components/navbar";
 import Main from "../layout/main";
 
-const Login: NextPage = () => {
+const Register: NextPage = () => {
   return (
     <Main>
       <Navbar />
@@ -10,4 +10,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default Register;

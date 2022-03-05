@@ -1,16 +1,11 @@
-import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import { props } from "../types/types";
 
-interface props {
-  children: ReactNode;
-  className?: string;
-}
-
-const DEFAULT = "bg-s-gray-200 h-screen text-s-white";
+const DEFAULT = "h-screen select-none mx-auto max-width flex flex-col";
 
 const Main = ({ children, className }: props) => {
   const merged = twMerge(DEFAULT, className);
-  return <section className={merged}>{children}</section>;
+  return <main className={merged}>{children}</main>;
 };
 
 export default Main;
