@@ -19,3 +19,7 @@ body {
   max-width: 80rem;
   @apply mx-auto;
 }
+
+.max-height {
+  max-height: 35rem;
+}
