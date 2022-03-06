@@ -4,15 +4,18 @@
 
 html,
 body {
-  padding: 0;
-  margin: 0;
   color: white;
   scroll-behavior: smooth;
   @apply bg-s-blue-300;
 }
-body {
-  overflow: auto;
-  height: 100%;
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  border: 4px solid #fff;
 }
 
 .max-width {
@@ -21,5 +24,10 @@ body {
 }
 
 .max-height {
-  max-height: 35rem;
+  max-height: 35.85rem;
+}
+
+.modal-dim {
+  width: 50rem;
+  height: 20rem;
 }

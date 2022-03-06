@@ -1,3 +1,5 @@
+import { item } from "../types/types";
+
 export const STOCKX_BASE_URL = "https://stockx.com/api";
 
 export const HEADERS = {

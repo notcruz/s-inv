@@ -7,8 +7,6 @@ export interface props {
   children?: ReactNode;
 }
 
-
-
 export interface DiscordUser extends Claims {
   nickname: string;
   name: string;
@@ -17,6 +15,16 @@ export interface DiscordUser extends Claims {
   email: string;
   email_verified: boolean;
   sub: true;
+}
+
+export interface item {
+  brand: string;
+  objectID: string;
+  colorway: string;
+  productCategory: string;
+  title: string;
+  urlKey: string;
+  retailPrice: number;
 }
 
 export interface auth {

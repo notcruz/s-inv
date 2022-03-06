@@ -3,7 +3,7 @@ import { HEADERS, STOCKX_BASE_URL } from "../../utils/config";
 import { fourZeroFour } from "../../utils/response";
 
 const FILTER =
-  "&resultsPerPage=6&dataType=product&facetsToRetrieve[]=browseVerticals&propsToRetrieve[][]=brand&propsToRetrieve[][]=colorway&propsToRetrieve[][]=media.thumbUrl&propsToRetrieve[][]=title&propsToRetrieve[][]=productCategory&propsToRetrieve[][]=shortDescription&propsToRetrieve[][]=urlKey&propsToRetrieve[][]=retailPrice";
+  "&resultsPerPage=5&dataType=product&facetsToRetrieve[]=browseVerticals&propsToRetrieve[][]=brand&propsToRetrieve[][]=colorway&propsToRetrieve[][]=media.thumbUrl&propsToRetrieve[][]=title&propsToRetrieve[][]=productCategory&propsToRetrieve[][]=shortDescription&propsToRetrieve[][]=urlKey&propsToRetrieve[][]=retailPrice";
 
 export default withApiAuthRequired(async function handler(req, res) {
   try {
