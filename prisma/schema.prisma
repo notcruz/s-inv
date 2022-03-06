@@ -9,3 +9,26 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  objectID  Int    @id @default(autoincrement())
+  email     String @unique
+  name      String
+  picture   String
+  inventory Item[]
+}
+
+model Item {
+  objectID Int    @id @default(autoincrement())
+  id       String
+  category String
+  brand    String
+  name     String
+  color    String
+  size     String
+  image    String
+  urlKey   String
+
+  User         User? @relation(fields: [userObjectID], references: [objectID])
+  userObjectID Int?
+}

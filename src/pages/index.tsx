@@ -1,6 +1,5 @@
 import { getSession, useUser } from "@auth0/nextjs-auth0";
 import type { GetServerSideProps, NextPage } from "next";
-import { useRouter } from "next/router";
 import Navbar from "../components/navbar";
 import Main from "../layout/main";
 
