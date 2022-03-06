@@ -1,37 +1,28 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { BsPlus } from "react-icons/bs/index";
 import { item } from "../types/types";
+import ItemInfo from "./iteminfo";
+import SelectItem from "./selectitem";
 
 interface props {
   setModal: Dispatch<SetStateAction<JSX.Element>>;
-  child: JSX.Element;
 }
 
-const AddModal = ({ setModal, child }: props) => {
+const AddModal = ({ setModal }: props) => {
   const [data, setData] = useState<item[] | null>(null);
+  const [item, setItem] = useState<item | null>(null);
+  const [child, setChild] = useState<JSX.Element>(
+    <SelectItem data={data} setItem={setItem} setData={setData} />
+  );
 
-  let timeout: NodeJS.Timeout;
-  let keyword = "";
+  useEffect(() => {
+    setChild(<SelectItem data={data} setItem={setItem} setData={setData} />);
+  }, [data]);
 
-  const searchItem = async (keyword: string): Promise<item[] | null> => {
-    const res = await fetch(`/api/search?keyword=${keyword}`);
-    if (res.status === 200) return await res.json();
-    return null;
-  };
-
-  const registerUpdate = (e: ChangeEvent<HTMLInputElement>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(async () => {
-      keyword = e.target.value;
-      setData(await searchItem(keyword));
-    }, 250);
-  };
+  useEffect(() => {
+    if (item !== null) setChild(<ItemInfo setModal={setModal} item={item} />);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item]);
 
   return (
     <div className="bg-black bg-opacity-50 absolute inset-0 z-10 flex justify-center items-center">
@@ -43,19 +34,6 @@ const AddModal = ({ setModal, child }: props) => {
             size={32}
             onClick={() => setModal(<></>)}
           />
-        </div>
-        <div className="flex flex-col h-full justify-center items-center">
-          <h2 className="font-bold text-3xl mt-12 mb-4">
-            What is the name of the item?
-          </h2>
-          <div className="mb-auto">
-            <input
-              type="text"
-              className="bg-s-blue-100 w-80 h-15 p-2.5 rounded placeholder:text-white"
-              placeholder="Search Product"
-              onChange={(e) => registerUpdate(e)}
-            />
-          </div>
         </div>
         {child}
       </div>

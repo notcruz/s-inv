@@ -7,3 +7,7 @@ export const twoZeroTwo = (res: NextApiResponse, json: Object) => {
 export const fourZeroFour = (res: NextApiResponse) => {
   return res.status(400).json({ code: 400, data: "You sure that was right?" });
 };
+
+export const fiveZeroZero = (res: NextApiResponse) => {
+  return res.status(500).json({ code: 500, message: "It's me, not you." });
+}

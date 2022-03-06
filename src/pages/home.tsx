@@ -2,49 +2,26 @@ import { getSession, Session, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import Main from "../layout/main";
-import { DiscordUser, item } from "../types/types";
+import { DiscordUser } from "../types/types";
 import { fetchUser } from "../utils/query";
-import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai/index";
+import { AiOutlineShoppingCart } from "react-icons/ai/index";
 import { MdOutlineInventory2 } from "react-icons/md/index";
 import { BiDollarCircle } from "react-icons/bi/index";
 import InfoBox from "../components/infobox";
-import Link from "next/link";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import AddModal from "../components/addmodal";
-import SelectItem from "../components/selectitem";
+import { Item } from "@prisma/client";
 
 interface props {
   user: DiscordUser;
+  inventory: Item[];
 }
 
 const OPTIONS = ["Inventory", "Wishlist"];
 const TABLE_HEADERS = ["Name", "Price", "Size", "Brand", "Action"];
 
-const Home = ({ user }: props) => {
-  const [page, setPage] = useState<number>(1);
+const Home = ({ user, inventory }: props) => {
   const [modal, setModal] = useState<JSX.Element>(<></>);
-  const [item, setItem] = useState<item | null>(null);
-
-  const [data, setData] = useState<item[] | null>(null);
-
-  let timeout: NodeJS.Timeout;
-  let keyword = "";
-
-  const searchItem = async (keyword: string): Promise<item[] | null> => {
-    const res = await fetch(`/api/search?keyword=${keyword}`);
-    if (res.status === 200) return await res.json();
-    return null;
-  };
-
-  const registerUpdate = (e: ChangeEvent<HTMLInputElement>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(async () => {
-      keyword = e.target.value;
-      setData(await searchItem(keyword));
-    }, 250);
-  };
-
-  const [child, setChild] = useState(<SelectItem/>);
 
   return (
     <>
@@ -99,9 +76,7 @@ const Home = ({ user }: props) => {
             <h1 className="text-4xl font-bold">Inventory</h1>
             <div className="space-x-5 flex">
               <button
-                onClick={() =>
-                  setModal(<AddModal setModal={setModal} child={} />)
-                }
+                onClick={() => setModal(<AddModal setModal={setModal} />)}
                 className="px-3 bg-s-red shadow-card rounded items-center transition ease-in-out font-semibold duration-250 hover:scale-105"
               >
                 Add New Item
@@ -148,7 +123,7 @@ export const getServerSideProps: GetServerSideProps = withPageAuthRequired({
         redirect: { permanent: false, destination: "/" },
         props: {},
       };
-    return { props: {} };
+    return { props: { inventory: user.inventory } };
   },
 });
 

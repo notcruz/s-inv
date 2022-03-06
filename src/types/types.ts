@@ -25,6 +25,22 @@ export interface item {
   title: string;
   urlKey: string;
   retailPrice: number;
+  media: {
+    thumbUrl: string
+  }
+  shortDescription: string;
+}
+
+export interface storedItem {
+  name: string;
+  color: string;
+  brand: string;
+  size: string;
+  category: string;
+  purchase_price: number;
+  image: string;
+  id: string
+  urlKey: string;
 }
 
 export interface auth {

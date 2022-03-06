@@ -19,15 +19,16 @@ model User {
 }
 
 model Item {
-  objectID Int    @id @default(autoincrement())
-  id       String
-  category String
-  brand    String
-  name     String
-  color    String
-  size     String
-  image    String
-  urlKey   String
+  objectID       Int    @id @default(autoincrement())
+  id             String
+  category       String
+  brand          String
+  name           String
+  color          String
+  size           String
+  image          String
+  urlKey         String
+  purchase_price Int
 
   User         User? @relation(fields: [userObjectID], references: [objectID])
   userObjectID Int?
