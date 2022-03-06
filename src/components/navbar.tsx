@@ -2,7 +2,7 @@ import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { props } from "../types/types";
 
-const DEFAULT = "flex p-5 text-xl 2xl:text-2xl space-x-5 mx-20";
+const DEFAULT = "flex p-5 2xl:py-10 text-xl 2xl:text-2xl space-x-5 mx-20";
 const SECTIONS = ["Home"];
 
 const TRANSITION = "transition ease-in-out hover:opacity-75";

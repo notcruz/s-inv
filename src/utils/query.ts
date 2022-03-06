@@ -35,3 +35,11 @@ export const addItem = (user: DiscordUser, item: string) => {
     }
   })
 }
+
+export const updateInventory = (user: DiscordUser, inventory: Item[]) => {
+  return prisma.user.update({ where: { email: user.email }, data: { inventory: { set: inventory } } })
+}
+
+export const getInventory = (user: DiscordUser) => {
+  return prisma.user.findUnique({ where: { email: user.email }, include: { inventory: true } })
+}
