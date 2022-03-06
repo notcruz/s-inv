@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['cdn.discordapp.com']
+  }
 }
 
 let consolewarn = console.warn
